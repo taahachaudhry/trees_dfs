@@ -39,4 +39,24 @@ describe "Tree" do
       expect(@house.dfs("Stairs")).to eq(@stairs)
     end
   end
+
+  describe "#bfs" do
+    it "should be able to find the root node" do
+      expect(@house.bfs("door")).to eq(@door)
+    end
+
+    it "should be able to find directly connected nodes" do
+      expect(@house.bfs("kitchen")).to eq(@kitchen)
+      expect(@house.bfs("living room")).to eq(@l_room)
+      expect(@house.bfs("TV")).to eq(@tv)
+      expect(@house.bfs("Couch")).to eq(@couch)
+    end
+
+    it "should be able to find nodes further away" do
+      expect(@house.bfs("food")).to eq(@food)
+      expect(@house.bfs("bedroom2")).to eq(@bedroom2)
+      expect(@house.bfs("bedroom1")).to eq(@bedroom1)
+      expect(@house.bfs("Stairs")).to eq(@stairs)
+    end
+  end
 end
