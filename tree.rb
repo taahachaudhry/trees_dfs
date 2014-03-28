@@ -18,6 +18,12 @@ class Node
     # if the child found it, return the result
     # otherwise move on to the next child
     # If no child can find it, return nil
+    return self if @value==value
+    @children.each do |child|
+      result=child.dfs(value)
+      return result if result
+    end
+    nil
   end
 
   def bfs(value, queue = [])
@@ -32,5 +38,14 @@ class Node
     # Otherwise, move on to the next node
     #
     # If the queue is empty and you haven't found it yet, return nil
+    return self if @value==value
+    @children.each do |child|
+      queue << child
+    end
+    while queue != []
+      node = queue.shift
+      result=node.bfs(value)
+      return result if result
+    end
   end
 end
